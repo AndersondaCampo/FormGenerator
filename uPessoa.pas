@@ -14,14 +14,18 @@ type
     FSobrenome: String;
     FNome     : String;
     FSalvar   : TClassSalvar;
+    FIdade: Integer;
     procedure SetNome(const Value: String);
     procedure SetSobrenome(const Value: String);
     procedure SetSalvar(const Value: TClassSalvar);
+    procedure SetIdade(const Value: Integer);
   public
     [Form(tcEdit, 'Nome', 150)]
     property Nome: String read FNome write SetNome;
     [Form(tcEdit, 'Sobrenome', 150)]
     property Sobrenome: String read FSobrenome write SetSobrenome;
+    [Form(tcEdit, 'Idade', 150)]
+    property Idade: Integer read FIdade write SetIdade;
     [Form(tcButton, 'Salvar', 100)]
     property Salvar: TClassSalvar read FSalvar write SetSalvar;
 
@@ -35,6 +39,11 @@ implementation
 procedure TEntidade.SalvarClick(Sender: TObject);
 begin
   ShowMessage('Click em salvar');
+end;
+
+procedure TEntidade.SetIdade(const Value: Integer);
+begin
+  FIdade := Value;
 end;
 
 procedure TEntidade.SetNome(const Value: String);

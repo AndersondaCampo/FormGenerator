@@ -15,8 +15,6 @@ uses
   uRTTIUtils,
   uPessoa,
   Vcl.StdCtrls,
-  uForms,
-  Interfaces,
   uFormPadrao;
 
 type
