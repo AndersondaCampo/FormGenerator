@@ -13,11 +13,16 @@ uses
   Vcl.Forms,
   Vcl.Dialogs,
   uRTTIUtils,
-  uPessoa;
+  uPessoa,
+  Vcl.StdCtrls,
+  uForms,
+  Interfaces,
+  uFormPadrao;
 
 type
-  TForm1 = class(TForm)
-    procedure FormCreate(Sender: TObject);
+  TFrm_Principal = class(TForm)
+    Button1: TButton;
+    procedure Button1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -25,15 +30,25 @@ type
   end;
 
 var
-  Form1: TForm1;
+  Frm_Principal: TFrm_Principal;
 
 implementation
 
 {$R *.dfm}
 
-procedure TForm1.FormCreate(Sender: TObject);
+procedure TFrm_Principal.Button1Click(Sender: TObject);
+var
+  LFrmCad: TFrm_padrao;
 begin
-  TRTTIUtils.ClassToFormCreate<TEntidade>(Self);
+  LFrmCad := TFrm_padrao.Create(Self);
+  try
+    TRTTIUtils.ClassToFormCreate<TEntidade>(LFrmCad);
+
+    if LFrmCad.ShowModal = mrOK then
+      ShowMessage('ModalResult = mrOK');
+  finally
+    FreeAndNil(LFrmCad);
+  end;
 end;
 
 end.
